@@ -12,21 +12,19 @@ with open('model/models/best_pipe.pkl', 'rb') as file:
 
 class Form(BaseModel):
     session_id: str
-    utm_source: str
-    utm_medium: str
-    utm_campaign: str
-    utm_keyword: str
-    device_category: str
-    device_os: str
-    device_brand: str
-    device_model: str
-    device_screen_resolution: str
-    device_brand: str
-    device_model: str
-    device_screen_resolution: str
-    device_browser: str
-    geo_country: str
-    geo_city: str
+    utm_source: str | None = None
+    utm_medium: str | None = None
+    utm_campaign: str | None = None
+    utm_keyword: str | None = None
+    utm_adcontent: str | None = None
+    device_category: str | None = None
+    device_os: str | None = None
+    device_brand: str | None = None
+    device_model: str | None = None
+    device_screen_resolution: str | None = None
+    device_browser: str | None = None
+    geo_country: str | None = None
+    geo_city: str | None = None
 
 
 class Prediction(BaseModel):
@@ -49,8 +47,8 @@ def predict(form: Form):
     y = model['model'].predict(df)
 
     return {
-        'Loan_ID': form.session_id,
-        'Result': y[0]
+        'session_id': form.session_id,
+        'result': y[0]
     }
 
 

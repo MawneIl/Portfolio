@@ -8,6 +8,7 @@ from sklearn.pipeline import Pipeline
 from sklearn.compose import make_column_selector, ColumnTransformer
 from sklearn.impute import SimpleImputer
 from sklearn.preprocessing import FunctionTransformer, OneHotEncoder, StandardScaler
+from sklearn.metrics import accuracy_score
 
 from sklearn.model_selection import cross_val_score
 from sklearn.ensemble import RandomForestClassifier
@@ -19,8 +20,6 @@ from sklearn.linear_model import LogisticRegression
 # -> иначе - текущая директория при локальном запуске
 '''
 path = os.environ.get('PROJECT_PATH', '.')
-
-files = ['ga_hits.pkl', 'ga_sessions.pkl']
 
 target_actions = ['sub_car_claim_click',
                   'sub_car_claim_submit_click',
@@ -37,7 +36,8 @@ logging.basicConfig(level=logging.INFO, filename=f"{path}/project_log.log", file
                     format="%(asctime)s %(levelname)s %(message)s")
 
 
-def df_load(files: list):
+def df_load():
+    files = ['ga_hits.pkl', 'ga_sessions.pkl']
     # загрузка данных
     with open(f'{path}/data/{files[0]}', 'rb') as file:
         df_hits = dill.load(file)
@@ -80,7 +80,7 @@ def create_features(df: pd.DataFrame) -> pd.DataFrame:
 
 
 def filter_data(df: pd.DataFrame) -> pd.DataFrame:
-    columns_to_drop = [
+    columns_to_drop = {
         'session_id',
         'client_id',
         'visit_date',
@@ -94,8 +94,12 @@ def filter_data(df: pd.DataFrame) -> pd.DataFrame:
         'device_screen_resolution',
         'geo_country',
         'geo_city'
-    ]
-    return df.drop(columns_to_drop, axis=1)
+    }
+
+    columns_to_save = list(set(df.columns.to_list()) - columns_to_drop)
+
+#    return df.drop(columns_to_drop, axis=1)
+    return df[columns_to_save]
 
 
 def pipeline():
@@ -103,11 +107,11 @@ def pipeline():
     logging.info('Target event predictor Pipeline')
 
     # input data:
-    df = df_load(files)
+    df = df_load()
 
     df = df[df.utm_source.notna()]
 
-    X = df.drop('target', axis=1)
+    x = df.drop('target', axis=1)
     y = df['target']
 
     class_weight = {0: 1, 1: 33}
@@ -138,8 +142,8 @@ def pipeline():
     ])
 
     models = [
-        LogisticRegression(solver='liblinear', class_weight=class_weight, random_state=42),
-        RandomForestClassifier(class_weight=class_weight, n_jobs=-1, oob_score=True, random_state=42)
+        LogisticRegression(solver='liblinear', class_weight=class_weight, random_state=42)
+#        RandomForestClassifier(class_weight=class_weight, n_jobs=-1, oob_score=True, random_state=42)
     ]
 
     best_score = .0
@@ -151,14 +155,17 @@ def pipeline():
             ('classifier', model)
         ])
 
-        score = cross_val_score(pipe, X, y, cv=4, scoring='roc_auc')
-        logging.info(f'model: {type(model).__name__}, acc_mean: {score.mean():.4f}, acc_std: {score.std():.4f}')
+        score = cross_val_score(pipe, x, y, cv=4, scoring='roc_auc')
+        logging.info(f'model: {type(model).__name__}, roc_auc_mean: {score.mean():.4f}, roc_auc_std: {score.std():.4f}')
         if score.mean() > best_score:
             best_score = score.mean()
             best_pipe = pipe
 
-    best_pipe.fit(X, y)
-    logging.info(f'best model: {type(best_pipe.named_steps["classifier"]).__name__}, roc_auc: {best_score:.4f}')
+    best_pipe.fit(x, y)
+    accuracy = accuracy_score(best_pipe.predict(x), y)
+    logging.info(f'best model: {type(best_pipe.named_steps["classifier"]).__name__}, '
+                 f'roc_auc: {best_score:.4f}, '
+                 f'accuracy: {accuracy: 2f}')
 
     model_filename = f'{path}/models/best_pipe.pkl'
 
@@ -171,7 +178,8 @@ def pipeline():
                 'version': 1.0,
                 'date': datetime.now(),
                 'type': type(best_pipe.named_steps["classifier"]).__name__,
-                'roc_auc': best_score
+                'roc_auc': best_score,
+                'accuracy':accuracy
             }
         }, file)
 
