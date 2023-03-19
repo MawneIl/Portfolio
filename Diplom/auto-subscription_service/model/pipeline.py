@@ -98,7 +98,6 @@ def filter_data(df: pd.DataFrame) -> pd.DataFrame:
 
     columns_to_save = list(set(df.columns.to_list()) - columns_to_drop)
 
-#    return df.drop(columns_to_drop, axis=1)
     return df[columns_to_save]
 
 
@@ -142,8 +141,8 @@ def pipeline():
     ])
 
     models = [
-        LogisticRegression(solver='liblinear', class_weight=class_weight, random_state=42)
-#        RandomForestClassifier(class_weight=class_weight, n_jobs=-1, oob_score=True, random_state=42)
+        LogisticRegression(solver='liblinear', class_weight=class_weight, random_state=42),
+        RandomForestClassifier(class_weight=class_weight, n_jobs=-1, oob_score=True, random_state=42)
     ]
 
     best_score = .0
@@ -179,7 +178,7 @@ def pipeline():
                 'date': datetime.now(),
                 'type': type(best_pipe.named_steps["classifier"]).__name__,
                 'roc_auc': best_score,
-                'accuracy':accuracy
+                'accuracy': accuracy
             }
         }, file)
 
