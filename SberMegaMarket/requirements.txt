@@ -1,6 +1,10 @@
-selenium
-beautifulsoup4
-html5lib
-pandas
-time
-random
+selenium~=4.10.0
+beautifulsoup4~=4.12.2
+html5lib~=1.1
+pandas~=2.0.2
+telegram~=0.0.1
+pytz~=2023.3
+setuptools~=60.2.0
+httpx
+python-telegram-bot --upgrade
+validators
