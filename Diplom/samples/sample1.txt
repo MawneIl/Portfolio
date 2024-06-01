@@ -1,0 +1,23 @@
+{
+	"session_id":"4692274857951437235.1622361545.1622361545",
+	"client_id":"1092505375.1622221235",
+	"visit_date":1622332800000,
+	"visit_time":"10:00:00",
+	"visit_number":2,
+	"utm_source":"kjsLglQLzykiRbcDiGcD",
+	"utm_medium":"cpc",
+	"utm_campaign":"zPJpddwzkFqLMSYgtDqy",
+	"utm_adcontent":"aYAcKhelKzYpXrRYknSP",
+	"utm_keyword":null,
+	"device_category":"tablet",
+	"device_os":null,
+	"device_brand":"Huawei",
+	"device_model":null,
+	"device_screen_resolution":"600x960",
+	"device_browser":"YaBrowser",
+	"geo_country":"Russia",
+	"geo_city":"Saint Petersburg",
+	"target":0,
+	"traffic":"paid",
+	"social_media":"no"
+}
