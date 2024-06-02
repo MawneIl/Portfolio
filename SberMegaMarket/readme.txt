@@ -2,7 +2,7 @@
 
 Использование:
 1. клонировать репозиторий
-2. перейти в папку SberMegaMarket используя GitBash
+2. перейти в корневую папку проекта используя GitBash
 3. установить необходимые библиотеки из файла requirements.txt
 gitbash>> pip install requirements.txt
 4. открыть в редакторе файл main
