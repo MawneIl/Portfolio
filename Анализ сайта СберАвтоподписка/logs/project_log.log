@@ -1,0 +1,26 @@
+2023-03-18 19:35:17,621 INFO Target event predictor Pipeline
+2023-03-18 19:37:20,106 INFO Target event predictor Pipeline
+2023-03-18 19:45:43,304 INFO model: LogisticRegression, acc_mean: 0.6685, acc_std: 0.0015
+2023-03-18 20:24:56,898 INFO model: RandomForestClassifier, acc_mean: 0.6345, acc_std: 0.0013
+2023-03-18 20:27:01,220 INFO best model: LogisticRegression, roc_auc: 0.6685
+2023-03-18 20:27:01,243 INFO Model is saved as ./models/best_pipe.pkl
+2023-03-19 15:05:29,840 INFO Target event predictor Pipeline
+2023-03-19 15:13:34,945 INFO model: LogisticRegression, acc_mean: 0.6685, acc_std: 0.0015
+2023-03-19 15:50:22,409 INFO model: RandomForestClassifier, acc_mean: 0.6345, acc_std: 0.0013
+2023-03-19 15:52:22,709 INFO best model: LogisticRegression, roc_auc: 0.6685
+2023-03-19 15:52:22,722 INFO Model is saved as ./models/best_pipe.pkl
+2023-03-19 16:21:52,908 INFO Target event predictor Pipeline
+2023-03-19 16:27:25,758 INFO Target event predictor Pipeline
+2023-03-19 16:35:34,100 INFO model: LogisticRegression, acc_mean: 0.6685, acc_std: 0.0015
+2023-03-19 17:12:25,635 INFO model: RandomForestClassifier, acc_mean: 0.6345, acc_std: 0.0013
+2023-03-19 17:14:20,049 INFO best model: LogisticRegression, roc_auc: 0.6685
+2023-03-19 17:14:20,062 INFO Model is saved as ./models/best_pipe.pkl
+2023-03-19 19:23:04,268 INFO Target event predictor Pipeline
+2023-03-19 19:31:03,871 INFO model: LogisticRegression, roc_auc_mean: 0.6685, roc_auc_std: 0.0015
+2023-03-19 19:33:52,213 INFO best model: LogisticRegression, roc_auc: 0.6685, accuracy:  0.547487
+2023-03-19 19:33:52,225 INFO Model is saved as ./models/best_pipe.pkl
+2023-03-19 20:30:26,538 INFO Target event predictor Pipeline
+2023-03-19 20:38:39,362 INFO model: LogisticRegression, roc_auc_mean: 0.6685, roc_auc_std: 0.0015
+2023-03-19 21:15:29,295 INFO model: RandomForestClassifier, roc_auc_mean: 0.6345, roc_auc_std: 0.0012
+2023-03-19 21:18:21,589 INFO best model: LogisticRegression, roc_auc: 0.6685, accuracy:  0.547458
+2023-03-19 21:18:21,601 INFO Model is saved as ./models/best_pipe.pkl

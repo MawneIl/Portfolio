@@ -1,0 +1,23 @@
+{
+	"session_id":"3012663214655995489.1635057254.1635057254",
+	"client_id":"701440315.1635057249",
+	"visit_date":1635033600000,
+	"visit_time":"09:34:14",
+	"visit_number":1,
+	"utm_source":"ZpYIoDJMcFzVoPFsHGJL",
+	"utm_medium":"banner",
+	"utm_campaign":"gecBYcKZCPMcVYdSSzKP",
+	"utm_adcontent":"JNHcPlZPxEMWDnRiyoBf",
+	"utm_keyword":"puhZPIYqKXeFPaUviSjo",
+	"device_category":"mobile",
+	"device_os":"Android",
+	"device_brand":"Huawei",
+	"device_model":null,
+	"device_screen_resolution":"360x720",
+	"device_browser":"Chrome",
+	"geo_country":"Russia",
+	"geo_city":"Moscow",
+	"target":0,
+	"traffic":"paid",
+	"social_media":"no"
+}

@@ -1,3 +1,4 @@
-
-Diplom/.idea/workspace.xml
-Diplom/.idea/workspace.xml
+**/.idea/
+**/data/*
+**/__pycache__/
+**.ipynb_checkpoints
